@@ -9,9 +9,10 @@ router.route("/").get((req, res) => {
 
 //add new user
 router.route("/add").post((req, res) => {
+  console.log(req);
   const username = req.body.username;
   const favList = [];
-  const newUser = new User({
+  const newUser = new UserModel({
     username,
     favList,
   });
@@ -22,7 +23,7 @@ router.route("/add").post((req, res) => {
 });
 //delete User
 router.route("/:id").delete((req, res) => {
-  User.findByIdAndDelete(req.params.id)
+  UserModel.findByIdAndDelete(req.params.id)
     .then(() => res.json("User deleted"))
     .catch((err) => res.status(400).json(err));
 });
