@@ -31,6 +31,8 @@ app.get("/", (req, res) => {
 
 const menuRouter = require("./routes/menu/index");
 app.use("/menu", menuRouter);
+const userRouter = require("./routes/users/index");
+app.use("/users", userRouter);
 
 // app.get("/api/users/:name", (request, response) => {
 //   const name = request.params.name;
