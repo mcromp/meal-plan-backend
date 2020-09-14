@@ -33,8 +33,8 @@ const menuRouter = require("./routes/menu/menu");
 app.use("/menu", menuRouter);
 const userRouter = require("./routes/users/users");
 app.use("/users", userRouter);
-const userRouter = require("./routes/calendar/calendar");
-app.use("/calendar", userRouter);
+const calendarRouter = require("./routes/calendar/calendar");
+app.use("/calendar", calendarRouter);
 
 // app.get("/api/users/:name", (request, response) => {
 //   const name = request.params.name;
