@@ -29,11 +29,11 @@ app.get("/", (req, res) => {
 // const usersRouter = require("./routes/users");
 // app.use("/users", usersRouter);
 
-const menuRouter = require("./routes/menu");
+const menuRouter = require("./routes/menu/menu");
 app.use("/menu", menuRouter);
-const userRouter = require("./routes/users");
+const userRouter = require("./routes/users/users");
 app.use("/users", userRouter);
-const userRouter = require("./routes/calendar");
+const userRouter = require("./routes/calendar/calendar");
 app.use("/calendar", userRouter);
 
 // app.get("/api/users/:name", (request, response) => {
