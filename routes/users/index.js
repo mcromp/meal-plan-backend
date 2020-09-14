@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const UserModel = require("./user.model");
 const menu = require("../menu/menu.json");
+const { mapReduce } = require("./user.model");
 const ID_LIST = menu.reduce((acc, item) => {
   acc.push(item.ID);
   return acc;
@@ -53,23 +54,30 @@ router.route("/:id").delete(async (req, res) => {
   res.status(500).json("Error: " + err);
 });
 
-//add fav
-router.patch("/:id/favAdd", getUser, async (req, res) => {
+//add favList
+router.patch("/:id/favListAdd", getUser, async (req, res) => {
   const { data } = req.body;
   try {
-    if (!ID_LIST.includes(data)) {
-      throw new Error("Invalid ID");
-    }
-    if (res.user.favList.includes(data)) {
-      throw new Error("Already added");
-    }
-    res.user.favList.push(data);
+    data.forEach((id) => {
+      if (!ID_LIST.includes(id)) {
+        throw new Error(`${id} is not a valid ID`);
+      }
+    });
+    res.user.favList = data;
     const userWithUpdatedFavList = await res.user.save();
     res.json(userWithUpdatedFavList);
   } catch (err) {
     res.status(400).json("Error: " + err);
   }
 });
-//delete fav
-
+//clear favList
+router.patch("/:id/favListClear", getUser, async (req, res) => {
+  try {
+    res.user.favList = [];
+    const userWithUpdatedFavList = await res.user.save();
+    res.json(userWithUpdatedFavList);
+  } catch (err) {
+    res.status(400).json("Error: " + err);
+  }
+});
 module.exports = router;
