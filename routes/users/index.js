@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const UserModel = require("./user.model");
 const menu = require("../menu/menu.json");
-const { mapReduce } = require("./user.model");
 const ID_LIST = menu.reduce((acc, item) => {
   acc.push(item.ID);
   return acc;

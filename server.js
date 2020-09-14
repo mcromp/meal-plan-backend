@@ -29,10 +29,12 @@ app.get("/", (req, res) => {
 // const usersRouter = require("./routes/users");
 // app.use("/users", usersRouter);
 
-const menuRouter = require("./routes/menu/index");
+const menuRouter = require("./routes/menu");
 app.use("/menu", menuRouter);
-const userRouter = require("./routes/users/index");
+const userRouter = require("./routes/users");
 app.use("/users", userRouter);
+const userRouter = require("./routes/calendar");
+app.use("/calendar", userRouter);
 
 // app.get("/api/users/:name", (request, response) => {
 //   const name = request.params.name;
