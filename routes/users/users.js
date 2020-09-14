@@ -53,7 +53,7 @@ router.route("/:id").delete(async (req, res) => {
   res.status(500).json("Error: " + err);
 });
 
-//add favList
+//add to favList
 router.patch("/:id/favListAdd", getUser, async (req, res) => {
   const { data } = req.body;
   try {

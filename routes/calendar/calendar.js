@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const Calendar = require("./calendar.model");
 
-router.route("/").get(async (req, res) => {
+//get all
+router.get("/", async (req, res) => {
   try {
     const calendar = await Calendar.find();
     res.json(calendar);
@@ -10,9 +11,9 @@ router.route("/").get(async (req, res) => {
   }
 });
 
-//add calendar item
-router.route("/add").post(async (req, res) => {
-  console.log("heyya");
+//add to calendar, several items
+router.post("/add", async (req, res) => {
+  const { data } = req.body;
   const { foodItemId, dateAdded, quantity, userId } = req.body;
   const stringToDate = new Date(dateAdded);
   const calendar = new Calendar({
@@ -28,5 +29,7 @@ router.route("/add").post(async (req, res) => {
     res.status(400).json("Error: " + err);
   }
 });
+
+//Update calendar, several items
 
 module.exports = router;
