@@ -1,0 +1,6 @@
+PATCH http://localhost:5000/users/5f5f8260283b079ee4367348/favAdd HTTP/1.1
+content-type: application/json
+
+{
+   "data": "11"
+}
