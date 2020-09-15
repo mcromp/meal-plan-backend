@@ -18,6 +18,10 @@ const calendarSchema = new Schema({
     type: String,
     required: true,
   },
+  id: {
+    type: String,
+    required: true,
+  },
 });
 
 const Calendar = mongoose.model("Calendar", calendarSchema);

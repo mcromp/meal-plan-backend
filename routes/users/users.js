@@ -7,7 +7,7 @@ const ID_LIST = menu.reduce((acc, item) => {
 }, []);
 
 //middleware
-const getUser = async (req, res, next) => {
+const checkUser = async (req, res, next) => {
   let user;
   try {
     user = await UserModel.findById(req.params.id);
@@ -54,7 +54,7 @@ router.route("/:id").delete(async (req, res) => {
 });
 
 //add to favList
-router.patch("/:id/favListAdd", getUser, async (req, res) => {
+router.patch("/:id/favListAdd", checkUser, async (req, res) => {
   const { data } = req.body;
   try {
     data.forEach((id) => {
@@ -70,7 +70,7 @@ router.patch("/:id/favListAdd", getUser, async (req, res) => {
   }
 });
 //clear favList
-router.patch("/:id/favListClear", getUser, async (req, res) => {
+router.patch("/:id/favListClear", checkUser, async (req, res) => {
   try {
     res.user.favList = [];
     const userWithUpdatedFavList = await res.user.save();
