@@ -2,21 +2,6 @@ const router = require("express").Router();
 const Calendar = require("./calendar.model");
 const { v4: uuidv4 } = require("uuid");
 
-//middleware
-const getUser = async (req, res, next) => {
-  let user;
-  try {
-    user = await UserModel.findById(req.params.id);
-    if (user == null) {
-      return res.status(404).json("Error: " + err);
-    }
-  } catch (err) {
-    return res.status(500).json("Error: " + err);
-  }
-  res.user = user;
-  next();
-};
-
 //get all
 router.get("/", async (req, res) => {
   try {
@@ -26,11 +11,29 @@ router.get("/", async (req, res) => {
     res.status(500).json("Error: " + err);
   }
 });
-
-//thing to do - make a middleware to go through data
-
-//clear calendar items for a peticular day
-//clear all
+//remove all calendar items for user
+router.delete("/:user/all", async (req, res) => {
+  try {
+    const deleted = await Calendar.deleteMany({
+      userId: req.params.user,
+    });
+    res.json(deleted);
+  } catch (err) {
+    res.status(500).json("Error: " + err);
+  }
+});
+//remove calendar items for a peticular day
+router.delete("/:user/:date", async (req, res) => {
+  try {
+    const deleted = await Calendar.deleteMany({
+      userId: req.params.user,
+      dateAdded: req.params.date,
+    });
+    res.json(deleted);
+  } catch (err) {
+    res.status(500).json("Error: " + err);
+  }
+});
 
 //add to calendar, several items
 router.post("/add", async (req, res) => {
@@ -40,10 +43,9 @@ router.post("/add", async (req, res) => {
     const calendarList = dataList.reduce((acc, item) => {
       const { foodItemId, dateAdded, quantity, userId } = item;
       const id = uuidv4();
-      const stringToDate = new Date(dateAdded);
       const calendar = new Calendar({
         foodItemId,
-        dateAdded: stringToDate,
+        dateAdded,
         quantity,
         userId,
         id,

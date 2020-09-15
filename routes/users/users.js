@@ -49,8 +49,9 @@ router.route("/:id").delete(async (req, res) => {
   try {
     await UserModel.findByIdAndDelete(req.params.id);
     res.json("User deleted");
-  } catch (err) {}
-  res.status(500).json("Error: " + err);
+  } catch (err) {
+    res.status(500).json("Error: " + err);
+  }
 });
 
 //add to favList
