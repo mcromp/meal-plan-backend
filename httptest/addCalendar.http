@@ -5,18 +5,18 @@ content-type: application/json
     "foodItemId": "22",
     "dateAdded": "2020-02-4",
     "quantity": 1,
-    "userId": "5f5f82f1cef5c09f4ada261e"
+    "userId": "5f60aa0bc400530e45230a13"
 },
 {
     "foodItemId": "2",
     "dateAdded": "2020-02-4",
     "quantity": 3,
-    "userId": "5f5f82f1cef5c09f4ada261e"
+    "userId": "5f60aa0bc400530e45230a13"
 },
 {
     "foodItemId": "12",
     "dateAdded": "2020-02-4",
     "quantity": 3,
-    "userId": "5f5f7694d15c149ab60ba77e"
+    "userId": "5f60aa0bc400530e45230a13"
 }
 ]

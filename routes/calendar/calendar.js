@@ -22,6 +22,7 @@ router.delete("/:user/all", async (req, res) => {
     res.status(500).json("Error: " + err);
   }
 });
+
 //remove calendar items for a peticular day
 router.delete("/:user/:date", async (req, res) => {
   try {

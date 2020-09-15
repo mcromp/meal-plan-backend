@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const UserModel = require("./user.model");
 const menu = require("../menu/menu.json");
+const Calendar = require("../calendar/calendar.model");
 const ID_LIST = menu.reduce((acc, item) => {
   acc.push(item.ID);
   return acc;
@@ -47,6 +48,9 @@ router.route("/signup").post(async (req, res) => {
 //delete User
 router.route("/:id").delete(async (req, res) => {
   try {
+    await Calendar.deleteMany({
+      userId: req.params.id,
+    });
     await UserModel.findByIdAndDelete(req.params.id);
     res.json("User deleted");
   } catch (err) {

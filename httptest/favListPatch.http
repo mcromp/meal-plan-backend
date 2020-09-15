@@ -1,4 +1,4 @@
-PATCH http://localhost:5000/users/5f5f8259283b079ee4367347/favListAdd HTTP/1.1
+PATCH http://localhost:5000/users/5f60aa0bc400530e45230a13/favListAdd HTTP/1.1
 content-type: application/json
 
 {
