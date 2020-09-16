@@ -1,0 +1,6 @@
+PATCH http://localhost:5000/users/5f6235f312bfd520efdc0b5f/favRemove HTTP/1.1
+content-type: application/json
+
+{
+   "payload": "10"
+}

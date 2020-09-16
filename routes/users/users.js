@@ -12,9 +12,6 @@ const checkUser = async (req, res, next) => {
   let user;
   try {
     user = await UserModel.findById(req.params.id);
-    if (user == null) {
-      return res.status(404).json("Error: " + err);
-    }
   } catch (err) {
     return res.status(500).json("Error: " + err);
   }
@@ -58,22 +55,45 @@ router.route("/:id").delete(async (req, res) => {
   }
 });
 
-//add to favList
-router.patch("/:id/favListAdd", checkUser, async (req, res) => {
-  const { data } = req.body;
+//remove one from favlist
+router.patch("/:id/favRemove", checkUser, async (req, res) => {
+  const { payload } = req.body;
+  const favList = res.user.favList;
+  const index = favList.indexOf(payload);
   try {
-    data.forEach((id) => {
-      if (!ID_LIST.includes(id)) {
-        throw new Error(`${id} is not a valid ID`);
-      }
-    });
-    res.user.favList = data;
-    const userWithUpdatedFavList = await res.user.save();
-    res.json(userWithUpdatedFavList);
+    if (!ID_LIST.includes(payload)) {
+      return res.status(400).json("Error: incorrect id");
+    }
+    if (index === -1) {
+      return res.status(400).json("Error: id not found");
+    }
+    res.user.favList.splice(index, 1);
+    const updatedUser = await res.user.save();
+    res.json(updatedUser);
   } catch (err) {
     res.status(400).json("Error: " + err);
   }
 });
+
+//add one to favList
+router.patch("/:id/favAdd", checkUser, async (req, res) => {
+  const { payload } = req.body;
+  const favList = res.user.favList;
+  try {
+    if (!ID_LIST.includes(payload)) {
+      return res.status(400).json("Error: incorrect id");
+    }
+    if (favList.includes(payload)) {
+      return res.status(400).json("Error: already added");
+    }
+    res.user.favList.push(payload);
+    const updatedUser = await res.user.save();
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(400).json("Error: " + err);
+  }
+});
+
 //clear favList
 router.patch("/:id/favListClear", checkUser, async (req, res) => {
   try {

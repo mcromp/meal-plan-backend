@@ -40,7 +40,6 @@ router.delete("/:user/:date", async (req, res) => {
 router.post("/add", async (req, res) => {
   try {
     const dataList = [...req.body];
-    console.log(req.body);
     const calendarList = dataList.reduce((acc, item) => {
       const { foodItemId, dateAdded, quantity, userId } = item;
       const id = uuidv4();
