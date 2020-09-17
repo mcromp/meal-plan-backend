@@ -36,8 +36,19 @@ router.delete("/:user/:date", async (req, res) => {
   }
 });
 
-//add to calendar, several items
-router.post("/add", async (req, res) => {
+//testing some stuff
+const removeCalendarDates = async (req, res, next) => {
+  const date = req.body[0].dateAdded;
+  try {
+    await Calendar.deleteMany({ dateAdded: `${date}` });
+  } catch (err) {
+    return res.status(500).json("Error: " + err);
+  }
+  next();
+};
+
+//clear old calendar of day, add to calendar, several items
+router.post("/add", removeCalendarDates, async (req, res) => {
   try {
     const dataList = [...req.body];
     const calendarList = dataList.reduce((acc, item) => {
