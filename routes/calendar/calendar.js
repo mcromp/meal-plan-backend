@@ -5,36 +5,33 @@ const Calendar = require("./calendar.model");
 router.get("/", async (req, res) => {
  try {
   const calendar = await Calendar.find();
-  res.json(calendar);
+  res.status(201).json(calendar);
  } catch (err) {
   res.status(500).json("Error: " + err);
  }
 });
 
-//remove all calendar items for user
-// router.delete("/:user/all", async (req, res) => {
-//  try {
-//   const deleted = await Calendar.deleteMany({
-//    userId: req.params.user,
-//   });
-//   res.json(deleted);
-//  } catch (err) {
-//   res.status(500).json("Error: " + err);
-//  }
-// });
+// remove all calendar items for user
+router.delete("/user", async (req, res) => {
+ try {
+  const deleted = await Calendar.deleteMany({
+   userId: req.body.userId,
+  });
+  res.status(201).json(deleted);
+ } catch (err) {
+  res.status(500).json("Error: " + err);
+ }
+});
 
-//remove calendar items for a peticular day
-// router.delete("/:user/:date", async (req, res) => {
-//  try {
-//   const deleted = await Calendar.deleteMany({
-//    userId: req.params.user,
-//    dateAdded: req.params.date,
-//   });
-//   res.json(deleted);
-//  } catch (err) {
-//   res.status(500).json("Error: " + err);
-//  }
-// });
+//get by user
+router.get("/:user/", async (req, res) => {
+ try {
+  const calendar = await Calendar.find({userId: });
+  res.json(calendar);
+ } catch (err) {
+  res.status(500).json("Error: " + err);
+ }
+});
 
 //testing some stuff
 // const removeCalendarDates = async (req, res, next) => {
@@ -47,20 +44,17 @@ router.get("/", async (req, res) => {
 //  next();
 // };
 
-// router.post("/update", async (req, res) => {
-//  try {
-//   const { menuItems, user, date } = req.body;
-
-//   const calendarItem = await Calendar.findOne({
-//    userId: user,
-//    date: date,
-//   });
-//   const updatedCalendarItem = (calendarItem.menuItems = [...menuItems]);
-//   res.status(201).json(updatedCalendarItem);
-//  } catch (err) {
-//   res.status(400).json("Error: " + err);
-//  }
-// });
+router.post("/update", async (req, res) => {
+ try {
+  const { menuItems, userId, date } = req.body;
+  const calendarItem = await Calendar.findOne({ userId, date });
+  calendarItem.menuItems = [...menuItems];
+  const savedCalendarItem = await calendarItem.save();
+  res.status(201).json(savedCalendarItem);
+ } catch (err) {
+  res.status(400).json("Error: " + err);
+ }
+});
 
 const filterCalendarDates = async (req, res, next) => {
  try {

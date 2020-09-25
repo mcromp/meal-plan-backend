@@ -1,0 +1,17 @@
+POST http://localhost:5000/calendar/update HTTP/1.1
+content-type: application/json
+
+{
+    "userId": "5f6775adfc56651e4969536f",
+    "date": "2020-02-5",
+    "menuItems": [
+      {"foodId": "2", 
+        "quantity": 4
+      },
+      {"foodId": "4", 
+        "quantity": 3
+      }, 
+      {"foodId": "12", 
+        "quantity": 1
+       }]
+}
