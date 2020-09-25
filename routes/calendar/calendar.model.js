@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const foodItemSchema = new Schema({
- id: {
+ foodId: {
   type: String,
   required: true,
  },
@@ -21,7 +21,7 @@ const calendarSchema = new Schema({
   type: String,
   required: true,
  },
- foodItems: [foodItemSchema],
+ menuItems: [foodItemSchema],
 });
 
 const Calendar = mongoose.model("Calendar", calendarSchema);

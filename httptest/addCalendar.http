@@ -1,22 +1,7 @@
 POST http://localhost:5000/calendar/add HTTP/1.1
 content-type: application/json
 
-[{
-    "foodItemId": "2",
-    "dateAdded": "2020-02-3",
-    "quantity": 1,
-    "userId": "5f6775adfc56651e4969536f"
-},
 {
-    "foodItemId": "12",
-    "dateAdded": "2020-02-3",
-    "quantity": 1,
-    "userId": "5f6775adfc56651e4969536f"
-},
-{
-    "foodItemId": "4",
-    "dateAdded": "2020-02-3",
-    "quantity": 3,
-    "userId": "5f6775adfc56651e4969536f"
+    "userId": "5f6775adfc56651e4969536f",
+    "dateList": ["2020-02-3", "2020-02-4", "2020-02-5"]
 }
-]
