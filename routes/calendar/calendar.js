@@ -11,6 +11,16 @@ router.get("/", async (req, res) => {
  }
 });
 
+//get user
+router.get("/:userId/", async (req, res) => {
+ try {
+  const calendar = await Calendar.find({ userId: req.query.userId });
+  res.status(201).json(calendar);
+ } catch (err) {
+  res.status(500).json("Error: " + err);
+ }
+});
+
 // remove all calendar items for user
 router.delete("/user", async (req, res) => {
  try {
@@ -22,27 +32,6 @@ router.delete("/user", async (req, res) => {
   res.status(500).json("Error: " + err);
  }
 });
-
-//get by user
-router.get("/:user/", async (req, res) => {
- try {
-  const calendar = await Calendar.find({userId: });
-  res.json(calendar);
- } catch (err) {
-  res.status(500).json("Error: " + err);
- }
-});
-
-//testing some stuff
-// const removeCalendarDates = async (req, res, next) => {
-//  const date = req.body[0].dateAdded;
-//  try {
-//   await Calendar.deleteMany({ dateAdded: `${date}` });
-//  } catch (err) {
-//   return res.status(500).json("Error: " + err);
-//  }
-//  next();
-// };
 
 router.post("/update", async (req, res) => {
  try {
