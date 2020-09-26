@@ -1,15 +1,19 @@
 const router = require("express").Router();
-const Calendar = require("../../Models/calendar.model");
-const calendar = require("../Controllers/calendar");
+const getAllCalendar = require("../Controllers/Calendar/getAllCalendar");
+const deleteUsersCalendar = require("../Controllers/Calendar/deleteUsersCalendar");
+const getUsersCalendar = require("../Controllers/Calendar/getUsersCalendar");
+const addDate = require("../Controllers/Calendar/addDate");
+const filterCalendarDates = require("../Controllers/Calendar/filterCalendarDates");
+const updateCalendar = require("../Controllers/Calendar/updateCalendar");
 
-router.get("/", calendar.getAll);
+router.get("/", getAllCalendar);
 
-router.get("/:userId/", calendar.getUser);
+router.get("/:userId/", getUsersCalendar);
 
-router.delete("/user", calendar.deleteUserCalender);
+router.delete("/user", deleteUsersCalendar);
 
-router.post("/update", calendar.updateCalendar);
+router.post("/update", updateCalendar);
 
-router.post("/add", calendar.filterCalendarDates, calendar.addDate);
+router.post("/add", filterCalendarDates, addDate);
 
 module.exports = router;
