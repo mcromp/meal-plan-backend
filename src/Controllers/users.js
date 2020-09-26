@@ -1,6 +1,6 @@
 const UserModel = require("../Models/user.model");
 const Calendar = require("../Models/calendar.model");
-const menuData = require("../Routes/Menu/menu.json");
+const menuData = require("../menu.json");
 
 const ID_LIST = menuData.reduce((acc, item) => {
  acc.push(item.ID);

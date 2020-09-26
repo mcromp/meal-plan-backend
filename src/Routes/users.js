@@ -1,16 +1,16 @@
 const router = require("express").Router();
-const userZ = require("../Controllers/users");
+const user = require("../Controllers/users");
 
-router.get("/", userZ.getAll);
+router.get("/", user.getAll);
 
-router.delete("/", userZ.deleteUser);
+router.delete("/", user.deleteUser);
 
-router.post("/signup", userZ.signUp);
+router.post("/signup", user.signUp);
 
-router.post("/favRemove", userZ.removefav);
+router.post("/favRemove", user.removefav);
 
-router.post("/favAdd", userZ.getUser, userZ.addFav);
+router.post("/favAdd", user.getUser, user.addFav);
 
-router.post("/:id/favListClear", userZ.getUser, userZ.clearFav);
+router.post("/:id/favListClear", user.getUser, user.clearFav);
 
 module.exports = router;
