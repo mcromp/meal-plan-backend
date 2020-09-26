@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const UserModel = require("./user.model");
-const menu = require("../menu/menu.json");
 const Calendar = require("../calendar/calendar.model");
+const menu = require("../menu/menu.json");
 const ID_LIST = menu.reduce((acc, item) => {
  acc.push(item.ID);
  return acc;
@@ -26,6 +26,7 @@ router.route("/").get(async (req, res) => {
   res.status(500).json("Error: " + err);
  }
 });
+
 //add user
 router.route("/signup").post(async (req, res) => {
  const user = new UserModel({
