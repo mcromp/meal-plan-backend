@@ -25,11 +25,11 @@ connection.once("open", () => {
 // const usersRouter = require("./routes/users");
 // app.use("/users", usersRouter);
 
-const menuRouter = require("./routes/menu/menu");
+const menuRouter = require("./src/routes/menu/menu");
 app.use("/menu", menuRouter);
-const userRouter = require("./routes/users/users");
+const userRouter = require("./src/routes/users/users");
 app.use("/users", userRouter);
-const calendarRouter = require("./routes/calendar/calendar");
+const calendarRouter = require("./src/routes/calendar/calendar");
 app.use("/calendar", calendarRouter);
 
 // app.get("/api/users/:name", (request, response) => {
