@@ -1,4 +1,4 @@
-const menuData = require("../Routes/Menu/menu.json");
+const menuData = require("../menu.json");
 
 exports.getAll = async (req, res) => {
  try {
