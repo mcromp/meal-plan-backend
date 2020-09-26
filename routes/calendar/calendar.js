@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Calendar = require("./calendar.model");
+const Calendar = require("../../Models/calendar.model");
 
 //get all
 router.get("/", async (req, res) => {
@@ -48,7 +48,9 @@ router.post("/update", async (req, res) => {
 
 const filterCalendarDates = async (req, res, next) => {
  try {
-  const userCalendarItems = await Calendar.find({ userId: req.body.userId });
+  const userCalendarItems = await Calendar.find({
+   userId: req.body.userId,
+  }).exec();
   const userDateList = userCalendarItems.reduce((acc, item) => {
    acc.push(item.date);
    return acc;

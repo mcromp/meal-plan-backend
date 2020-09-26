@@ -1,18 +1,18 @@
 const router = require("express").Router();
-const UserModel = require("./user.model");
-const Calendar = require("../calendar/calendar.model");
-const menu = require("../menu/menu.json");
+const UserModel = require("../../Models/user.model");
+const Calendar = require("../../Models/calendar.model");
+const menu = require("../Menu/menu.json");
 const ID_LIST = menu.reduce((acc, item) => {
  acc.push(item.ID);
  return acc;
 }, []);
 
 //usercheck
-const checkUser = async (req, res, next) => {
+const getUser = async (req, res, next) => {
  try {
-  res.user = await UserModel.findById(req.params.id);
+  res.user = await UserModel.findById(req.body.userId);
  } catch (err) {
-  return res.status(500).json("Error: " + err);
+  return res.status(500).json(err);
  }
  next();
 };
@@ -23,7 +23,7 @@ router.route("/").get(async (req, res) => {
   const users = await UserModel.find();
   res.json(users);
  } catch (err) {
-  res.status(500).json("Error: " + err);
+  res.status(500).json(err);
  }
 });
 
@@ -37,7 +37,7 @@ router.route("/signup").post(async (req, res) => {
   const newUser = await user.save();
   res.status(201).json({ newUser });
  } catch (err) {
-  res.status(400).json("Error: " + err);
+  res.status(400).json(err);
  }
 });
 
@@ -46,59 +46,60 @@ router.delete("/", async (req, res) => {
  try {
   await Calendar.deleteMany({ userId: req.body.id });
   const deletedUser = await UserModel.findByIdAndDelete(req.body.id);
-  res.status(201).json({ deletedUser });
+  res.status(201).json(deletedUser);
  } catch (err) {
-  res.status(500).json("Error: " + err);
+  res.status(500).json("" + err);
  }
 });
 
+const checkMenuItemId = (itemId) => {
+ if (!ID_LIST.includes(itemId))
+  throw new Error("Submitted item not in Menu List");
+};
+
 //remove one from favlist
-router.patch("/:id/favRemove", checkUser, async (req, res) => {
- const { payload } = req.body;
+router.post("/favRemove", async (req, res) => {
+ const { itemId } = req.body;
  const favList = res.user.favList;
- const index = favList.indexOf(payload);
+ const index = favList.indexOf(itemId);
  try {
-  if (!ID_LIST.includes(payload)) {
-   return res.status(400).json("Error: incorrect id");
-  }
+  checkMenuItemId(itemId);
   if (index === -1) {
-   return res.status(400).json("Error: id not found");
+   return res.status(400).json("Error: Cannot remove, id not found");
   }
   res.user.favList.splice(index, 1);
   const updatedUser = await res.user.save();
-  res.json(updatedUser);
+  res.status(201).json(updatedUser);
  } catch (err) {
-  res.status(400).json("Error: " + err);
+  res.status(400).json("" + err);
  }
 });
 
 //add one to favList
-router.patch("/:id/favAdd", checkUser, async (req, res) => {
- const { payload } = req.body;
+router.post("/favAdd", getUser, async (req, res) => {
+ const { itemId } = req.body;
  const favList = res.user.favList;
  try {
-  if (!ID_LIST.includes(payload)) {
-   return res.status(400).json("Error: incorrect id");
-  }
-  if (favList.includes(payload)) {
+  checkMenuItemId(itemId);
+  if (favList.includes(itemId)) {
    return res.status(400).json("Error: already added");
   }
-  res.user.favList.push(payload);
+  res.user.favList.push(itemId);
   const updatedUser = await res.user.save();
-  res.json(updatedUser);
+  res.status(201).json(updatedUser);
  } catch (err) {
-  res.status(400).json("Error: " + err);
+  res.status(400).json("" + err);
  }
 });
 
 //clear favList
-router.patch("/:id/favListClear", checkUser, async (req, res) => {
+router.post("/:id/favListClear", getUser, async (req, res) => {
  try {
   res.user.favList = [];
   const userWithUpdatedFavList = await res.user.save();
   res.json(userWithUpdatedFavList);
  } catch (err) {
-  res.status(400).json("Error: " + err);
+  res.status(400).json(err);
  }
 });
 module.exports = router;
