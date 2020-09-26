@@ -7,15 +7,13 @@ const ID_LIST = menu.reduce((acc, item) => {
  return acc;
 }, []);
 
-//middleware
+//usercheck
 const checkUser = async (req, res, next) => {
- let user;
  try {
-  user = await UserModel.findById(req.params.id);
+  res.user = await UserModel.findById(req.params.id);
  } catch (err) {
   return res.status(500).json("Error: " + err);
  }
- res.user = user;
  next();
 };
 
@@ -42,13 +40,11 @@ router.route("/signup").post(async (req, res) => {
  }
 });
 
-//delete User
-router.route("/:id").delete(async (req, res) => {
+//delete user by id
+router.delete("/", async (req, res) => {
  try {
-  await Calendar.deleteMany({
-   userId: req.params.id,
-  });
-  const deletedUser = await UserModel.findByIdAndDelete(req.params.id);
+  await Calendar.deleteMany({ userId: req.body.id });
+  const deletedUser = await UserModel.findByIdAndDelete(req.body.id);
   res.status(201).json({ deletedUser });
  } catch (err) {
   res.status(500).json("Error: " + err);

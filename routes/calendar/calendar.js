@@ -22,16 +22,17 @@ router.get("/:userId/", async (req, res) => {
 });
 
 // remove all calendar items for user
-router.delete("/user", async (req, res) => {
+const deleteUserCalender = async (req, res, next) => {
  try {
-  const deleted = await Calendar.deleteMany({
-   userId: req.body.userId,
-  });
+  const deleted = await Calendar.deleteMany({ userId: req.body.id }).exec();
   res.status(201).json(deleted);
  } catch (err) {
   res.status(500).json("Error: " + err);
  }
-});
+ next();
+};
+
+router.delete("/user", deleteUserCalender);
 
 router.post("/update", async (req, res) => {
  try {
