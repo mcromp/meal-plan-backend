@@ -14,7 +14,7 @@ router.delete("/", deleteUser);
 
 router.post("/signup", addUser);
 
-router.post("/favRemove", deleteFav);
+router.post("/favRemove", loadUser, deleteFav);
 
 router.post("/favAdd", loadUser, addFav);
 

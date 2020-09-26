@@ -2,6 +2,6 @@ POST http://localhost:5000/users/favRemove HTTP/1.1
 content-type: application/json
 
 {
-  "userId": "5f6f3d42cd9bedc5e0f8db81",
-  "itemId": "332"
+  "userId": "5f6f93220b3441f1f8ff4f02",
+  "itemId": "4"
 }
