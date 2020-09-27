@@ -1,4 +1,4 @@
-const checkMenuItemId = require("../checkMenuItemId");
+const checkMenuItemId = require("../HelperFunction/checkMenuItemId");
 
 module.exports = async (req, res) => {
  const itemId = req.body.itemId;
