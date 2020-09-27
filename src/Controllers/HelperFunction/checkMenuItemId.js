@@ -1,4 +1,4 @@
-const menuData = require("../menu.json");
+const menuData = require("../../Assets/menu.json");
 
 const ID_LIST = menuData.reduce((acc, item) => {
  acc.push(item.ID);

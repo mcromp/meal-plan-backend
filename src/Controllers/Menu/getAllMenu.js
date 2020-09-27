@@ -1,4 +1,4 @@
-const menuData = require("../../menu.json");
+const menuData = require("../../Assets/menu.json");
 
 module.exports = async (req, res) => {
  try {
