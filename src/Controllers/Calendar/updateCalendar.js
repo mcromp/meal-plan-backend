@@ -1,12 +1,14 @@
 const Calendar = require("../../Models/calendar.model");
 const checkMenuItemId = require("../HelperFunction/checkMenuItemId");
 const checkCalendarDuplicates = require("../HelperFunction/checkCalendarDuplicates");
+const checkCalendarDate = require("../HelperFunction/checkCalendarDate");
 module.exports = async (req, res) => {
  try {
   const { menuItems, userId, date } = req.body;
   checkCalendarDuplicates(menuItems);
   menuItems.forEach((item) => checkMenuItemId(item.foodId));
   const calendarItem = await Calendar.findOne({ userId, date }).exec();
+  checkCalendarDate(calendarItem);
   calendarItem.menuItems = [...menuItems];
   const savedCalendarItem = await calendarItem.save();
   res.status(201).json(savedCalendarItem);
