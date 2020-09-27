@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
   await Calendar.deleteMany({ userId: req.body.id }).exec();
   const deletedUser = await UserModel.findByIdAndDelete(req.body.id);
   res.status(201).json(deletedUser);
- } catch (err) {
-  res.status(500).json("" + err);
+ } catch (e) {
+  res.status(500).json(`${e}`);
  }
 };

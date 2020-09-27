@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
 
   await Calendar.insertMany(newCalendarList);
   res.status(201).json(newCalendarList);
- } catch (err) {
-  res.status(400).json({ err });
+ } catch (e) {
+  res.status(400).json(`${e}`);
  }
 };

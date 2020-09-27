@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
   res.user.favList.splice(index, 1);
   const updatedUser = await res.user.save();
   res.status(201).json(updatedUser);
- } catch (err) {
-  res.status(400).json("" + err);
+ } catch (e) {
+  res.status(400).json(`${e}`);
  }
 };

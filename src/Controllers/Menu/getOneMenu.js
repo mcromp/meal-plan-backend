@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   if (menuItem) {
    res.json(menuItem);
   }
- } catch (err) {
-  res.status(400).json("Error: " + err);
+ } catch (e) {
+  res.status(400).json(`${e}`);
  }
 };
