@@ -5,6 +5,7 @@ const foodItemSchema = new Schema({
  foodId: {
   type: String,
   required: true,
+  unique: true,
  },
  quantity: {
   type: Number,
