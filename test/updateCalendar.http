@@ -5,9 +5,6 @@ content-type: application/json
     "userId": "5f6f93220b3441f1f8ff4f02",
     "date": "2020-02-3",
     "menuItems": [
-      {"foodId": "2",
-        "quantity": 10
-      },
       {"foodId": "4", 
         "quantity": 3
       }, 
