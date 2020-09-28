@@ -2,15 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const foodItemSchema = new Schema({
- foodId: {
-  type: String,
-  required: true,
-  unique: true,
- },
- quantity: {
-  type: Number,
-  required: true,
- },
+ foodId: String,
+ quantity: Number,
 });
 
 const calendarSchema = new Schema({

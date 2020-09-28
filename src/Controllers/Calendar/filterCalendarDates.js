@@ -4,7 +4,7 @@ module.exports = async (req, res, next) => {
  try {
   const userCalendarItems = await Calendar.find({
    userId: req.body.userId,
-  }).exec();
+  });
   const userDateList = userCalendarItems.reduce((acc, item) => {
    acc.push(item.date);
    return acc;
