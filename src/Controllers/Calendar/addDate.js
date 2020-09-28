@@ -12,7 +12,6 @@ module.exports = async (req, res) => {
    acc.push(calendar);
    return acc;
   }, []);
-  console.log(newCalendarList);
   await Calendar.insertMany(newCalendarList, { ordered: false });
   res.status(201).json(newCalendarList);
  } catch (e) {
