@@ -2,8 +2,8 @@ POST http://localhost:5000/calendar/update HTTP/1.1
 content-type: application/json
 
 {
-    "userId": "5f6f93220b3441f1f8ff4f02",
-    "date": "2020-02-3",
+    "userId": "5f6f3d42cd9bedc5e0f8db81",
+    "date": "2020-9-2",
     "menuItems": [
       {"foodId": "4", 
         "quantity": 3
