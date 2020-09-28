@@ -3,7 +3,7 @@ content-type: application/json
 
 {
     "userId": "5f6f3d42cd9bedc5e0f8db81",
-    "date": "2020-9-2",
+    "date": "28-8-2020",
     "menuItems": [
       {"foodId": "4", 
         "quantity": 3

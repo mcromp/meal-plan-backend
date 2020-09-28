@@ -8,7 +8,7 @@ const updateCalendar = require("../Controllers/Calendar/updateCalendar");
 
 router.get("/", getAllCalendar);
 
-router.get("/:userId/", getManyCalendar);
+router.post("/user/:userId/", getManyCalendar);
 
 router.delete("/user", deleteUsersCalendar);
 

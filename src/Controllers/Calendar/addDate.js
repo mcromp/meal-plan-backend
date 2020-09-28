@@ -3,6 +3,7 @@ const Calendar = require("../../Models/calendar.model");
 module.exports = async (req, res) => {
  try {
   const dateList = [...req.filteredDates];
+  console.log(dateList);
   const newCalendarList = dateList.reduce((acc, date) => {
    const calendar = new Calendar({
     date,

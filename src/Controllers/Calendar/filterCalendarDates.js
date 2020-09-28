@@ -4,11 +4,8 @@ module.exports = async (req, res, next) => {
  try {
   const userCalendarItems = await Calendar.find({
    userId: req.body.userId,
-  });
-  const userDateList = userCalendarItems.reduce((acc, item) => {
-   acc.push(item.date);
-   return acc;
-  }, []);
+  }).exec();
+  const userDateList = userCalendarItems.map((item) => item.date);
   const filteredDates = req.body.dateList.filter(
    (reqDate) => !userDateList.includes(reqDate)
   );
