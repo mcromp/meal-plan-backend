@@ -1,0 +1,6 @@
+GET http://localhost:5000/calendar/5f6f3d42cd9bedc5e0f8db81 HTTP/1.1
+content-type: application/json
+
+{
+  "dateList": ["2020-9-1", "2020-9-10", "2020-12-10"]
+}
