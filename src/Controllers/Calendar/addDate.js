@@ -1,9 +1,8 @@
 const Calendar = require("../../Models/calendar.model");
 
-module.exports = async (req, res) => {
+module.exports = async (req, res, next) => {
  try {
   const dateList = [...req.filteredDates];
-  console.log(dateList);
   const newCalendarList = dateList.reduce((acc, date) => {
    const calendar = new Calendar({
     date,
@@ -13,8 +12,8 @@ module.exports = async (req, res) => {
    acc.push(calendar);
    return acc;
   }, []);
-  await Calendar.insertMany(newCalendarList, { ordered: false });
-  res.status(201).json(newCalendarList);
+  await Calendar.save(newCalendarList).exec();
+  next();
  } catch (e) {
   res.status(400).json(`${e}`);
  }
