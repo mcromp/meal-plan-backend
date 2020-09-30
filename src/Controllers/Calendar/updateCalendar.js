@@ -11,9 +11,6 @@ module.exports = async (req, res) => {
    { menuItems: menuItems },
    { new: true, upsert: true }
   );
-  // checkCalendarDate(calendarItem);
-  // calendarItem.menuItems = [...menuItems];
-  // const savedCalendarItem = await calendarItem.save();
   res.status(201).json(calendarItem);
  } catch (e) {
   res.status(400).json(`${e}`);
