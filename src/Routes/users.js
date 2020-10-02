@@ -18,6 +18,6 @@ router.post("/favRemove", loadUser, deleteFav);
 
 router.post("/favAdd", loadUser, addFav);
 
-router.post("/:id/favListDelete", loadUser, deleteFavList);
+router.post("/favClear", loadUser, deleteFavList);
 
 module.exports = router;
