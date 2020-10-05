@@ -15,6 +15,6 @@ module.exports = async (req, res, next) => {
   await Calendar.save(newCalendarList).exec();
   next();
  } catch (e) {
-  res.status(400).json(`${e}`);
+  res.status(400).json(e.message);
  }
 };

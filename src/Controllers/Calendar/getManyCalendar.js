@@ -8,6 +8,6 @@ module.exports = async (req, res) => {
   });
   res.status(201).json(calendar);
  } catch (e) {
-  res.status(500).json(`${e}`);
+  res.status(500).json(e.message);
  }
 };

@@ -2,5 +2,5 @@ POST http://localhost:5000/users/signup HTTP/1.1
 content-type: application/json
 
 {
-    "username": "Toto"
+    "username": "Totodd3"
 }

@@ -12,6 +12,6 @@ module.exports = async (req, res) => {
   const updatedUser = await res.user.save();
   res.status(201).json(updatedUser);
  } catch (e) {
-  res.status(400).json(`${e}`);
+  res.status(400).json(e.message);
  }
 };

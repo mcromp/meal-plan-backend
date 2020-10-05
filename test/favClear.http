@@ -1,0 +1,6 @@
+POST http://localhost:5000/users/favClear HTTP/1.1
+content-type: application/json
+
+{
+  "userId": "5f6f3333d42cd9bedc5e0f8db81"
+}

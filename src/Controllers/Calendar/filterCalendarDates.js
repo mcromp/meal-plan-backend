@@ -12,6 +12,6 @@ module.exports = async (req, res, next) => {
   req.filteredDates = filteredDates;
   next();
  } catch (e) {
-  res.status(400).json(`${e}`);
+  res.status(400).json(e.message);
  }
 };

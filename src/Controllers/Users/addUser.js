@@ -9,6 +9,10 @@ module.exports = async (req, res) => {
   const newUser = await user.save();
   res.status(201).json(newUser);
  } catch (e) {
-  res.status(400).json(`${e}`);
+  let message = e.message;
+  if (e.message.includes("duplicate key error")) {
+   message = "Error: Username already exsist";
+  }
+  res.status(400).json(message);
  }
 };

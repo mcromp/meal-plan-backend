@@ -5,6 +5,6 @@ module.exports = async (req, res) => {
   const calendar = await Calendar.find();
   res.status(201).json(calendar);
  } catch (e) {
-  res.status(500).json(`${e}`);
+  res.status(500).json(e.message);
  }
 };
