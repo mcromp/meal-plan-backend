@@ -7,8 +7,11 @@ const deleteFav = require("../Controllers/Users/deleteFav");
 const deleteUser = require("../Controllers/Users/deleteUser");
 const loadUser = require("../Controllers/Users/loadUser");
 const deleteFavList = require("../Controllers/Users/deleteFavList");
+const getOneUser = require("../Controllers/Users/getOneUser");
 
 router.get("/", getAllUsers);
+
+router.get("/:id", getOneUser);
 
 router.delete("/", deleteUser);
 
