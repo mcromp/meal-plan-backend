@@ -1,6 +1,5 @@
 const Calendar = require("../../Models/calendar.model");
 const checkMenuItemId = require("../HelperFunction/checkMenuItemId");
-const checkCalendarDuplicates = require("../HelperFunction/checkCalendarDuplicates");
 module.exports = async (req, res) => {
  try {
   const { menuItems, userId, date } = req.body;
