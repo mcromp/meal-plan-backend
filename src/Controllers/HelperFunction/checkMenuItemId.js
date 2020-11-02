@@ -1,7 +1,7 @@
 const menuData = require("../../Assets/menu.json");
 
 const ID_LIST = menuData.reduce((acc, item) => {
- acc.push(item.ID);
+ acc.push(item.id);
  return acc;
 }, []);
 
