@@ -1,9 +1,7 @@
 const Calendar = require("../../Models/calendar.model");
-const checkMenuItemId = require("../HelperFunction/checkMenuItemId");
 module.exports = async (req, res) => {
  try {
   const { menuItems, userId, date } = req.body;
-  menuItems.forEach((item) => checkMenuItemId(item.foodId));
   const calendarItem = await Calendar.findOneAndUpdate(
    { date, userId },
    { menuItems: menuItems },
