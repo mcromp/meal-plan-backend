@@ -3,7 +3,6 @@ module.exports = async (req, res) => {
  const itemId = req.body.itemId;
  const favList = res.user.favList;
  try {
-  checkMenuItemId(itemId);
   if (favList.includes(itemId)) {
    return res.status(400).json("Error: already added");
   }
