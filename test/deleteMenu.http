@@ -1,0 +1,6 @@
+DELETE http://localhost:5000/menu/ HTTP/1.1
+content-type: application/json
+
+{
+"id": "5fa11e966e08f36f7a190839"
+}
