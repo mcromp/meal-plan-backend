@@ -23,11 +23,11 @@ connection.once("open", () => {
  console.log("MongoDB database connection established successfully");
 });
 
-const menuRouter = require("./src/routes/menu");
+const menuRouter = require("./src/Routes/menu.js");
 app.use("/menu", menuRouter);
-const userRouter = require("./src/routes/users");
+const userRouter = require("./src/Routes/users.js");
 app.use("/users", userRouter);
-const calendarRouter = require("./src/routes/calendar");
+const calendarRouter = require("./src/Routes/calendar.js");
 app.use("/calendar", calendarRouter);
 
 app.listen(port, () => {
