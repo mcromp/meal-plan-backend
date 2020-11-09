@@ -3,7 +3,7 @@ module.exports = async (req, res) => {
  const favList = res.user.favList;
  const index = favList.indexOf(itemId);
  try {
-  if (index === -1) throw Error("Cannot remove, item not found");
+  if (index === -1) { return response.status(400).json({ error: 'Cannot remove, item not found' })}
   res.user.favList.splice(index, 1);
   const updatedUser = await res.user.save();
   res.status(201).json(updatedUser);

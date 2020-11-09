@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
    { menuItems: menuItems },
    { new: true, upsert: true }
   );
-  if (!calendarItem) throw new Error("Date not found");
+  if (!calendarItem) { return response.status(400).json({ error: 'Date not found' }) }
   res.status(201).json(calendarItem);
  } catch (e) {
   res.status(400).json(e.message);

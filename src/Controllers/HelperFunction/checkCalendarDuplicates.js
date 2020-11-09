@@ -5,7 +5,5 @@ module.exports = (itemsArr) => {
  }, []);
  if (
   foodIdArr.some((id) => foodIdArr.indexOf(id) !== foodIdArr.lastIndexOf(id))
- ) {
-  throw new Error("Duplicate foodIds submitted");
- }
+ )  response.status(400).json({ error: 'Duplicate foodIds submitted' })
 };
