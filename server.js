@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -12,7 +13,12 @@ app.use(express.json());
 app.use(express.static('build'));
 
 // eslint-disable-next-line no-undef
-const uri = process.env.ATLAS_URI;
+let uri = process.env.ATLAS_URI;
+
+if (process.env.NODE_ENV === 'test') {
+  uri = process.env.TEST_URI;
+}
+
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useCreateIndex: true,
