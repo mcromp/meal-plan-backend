@@ -6,13 +6,11 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-// eslint-disable-next-line no-undef
 const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use(express.static('build'));
 
-// eslint-disable-next-line no-undef
 let uri = process.env.ATLAS_URI;
 
 if (process.env.NODE_ENV === 'test') {
@@ -41,3 +39,5 @@ app.use('/calendar', calendarRouter);
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
+
+module.exports = app;
