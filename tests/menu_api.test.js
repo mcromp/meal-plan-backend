@@ -77,7 +77,3 @@ describe("when inital food items saved to menu", () => {
 afterAll(() => {
  mongoose.connection.close();
 });
-
-afterAll((done) => {
- mongoose.connection.close(done);
-});
