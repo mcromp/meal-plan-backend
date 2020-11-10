@@ -3,8 +3,7 @@ const supertest = require("supertest");
 const app = require("../server");
 const api = supertest(app);
 const Menu = require("../src/Models/menu.model");
-const { initalMenu } = require("../tests/test_helper");
-const helper = require("../tests/test_helper");
+const helper = require("./helpers/test_helper");
 
 beforeEach(async () => {
  await Menu.deleteMany({});
@@ -68,7 +67,7 @@ describe("when inital food items saved to menu", () => {
   });
   test("fails with invalid id", async () => {
    const body = {
-    id: "55555555555555555xxxx",
+    id: "5555555xxxx",
    };
    await api.delete("/menu").send(body).expect(500);
   });
@@ -77,4 +76,8 @@ describe("when inital food items saved to menu", () => {
 
 afterAll(() => {
  mongoose.connection.close();
+});
+
+afterAll((done) => {
+ mongoose.connection.close(done);
 });
