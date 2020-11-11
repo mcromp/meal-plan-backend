@@ -1,9 +1,9 @@
-POST http://localhost:5000/calendar/update HTTP/1.1
+POST https://ancient-fortress-30675.herokuapp.com/calendar/update HTTP/1.1
 content-type: application/json
 
 {
-    "userId": "5f7af44195b4a7b93672d146",
-    "date": "9-10-2020",
+    "userId": "5fabc77774112f0017a7e7d9",
+    "date": "12-11-2020",
     "menuItems": [
       {"foodId": "14", 
         "quantity": 3
@@ -14,5 +14,5 @@ content-type: application/json
       {"foodId": "12", 
         "quantity": 3
       }
-]
+    ]
 }

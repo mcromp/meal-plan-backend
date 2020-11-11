@@ -46,7 +46,7 @@ const initalUsers = [
 const initalCalendar = [
  {
   _id: "5fa916fcc94f2fbde6acb50a",
-  date: "12-11-2020",
+  date: "8-11-2020",
   userId: "5fa2efc54b2279a838761186",
   __v: 0,
   menuItems: [
