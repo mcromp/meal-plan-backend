@@ -75,8 +75,8 @@ describe("when calendar items are saved to inital calendar", () => {
   });
  });
 
- describe("updating calendar items", () => {
-  test("succeeds with valid data", async () => {
+ describe("updating a calendar's food items", () => {
+  test("updates with valid data", async () => {
    const calendar = await Calendar.find({});
    const menuItems = [{ foodId: "1", quantity: 4 }];
    const date = calendar[0].date;
@@ -101,6 +101,27 @@ describe("when calendar items are saved to inital calendar", () => {
    }));
    expect(calendarUpdated[0].menuItems).toHaveLength(menuItems.length);
    expect([...menuItemsUpdated]).toEqual([...menuItems]);
+  });
+  test("creates new calendar item with valid data", async () => {
+   const calendar = await Calendar.find({});
+   const validData = {
+    menuItems: [],
+    userId: calendar[0].userId,
+    date: "12-12-2020",
+   };
+   await api
+    .post("/calendar/update")
+    .send(validData)
+    .expect(200)
+    .expect("Content-Type", /application\/json/);
+   const calendarUpdated = await Calendar.find({
+    userId: calendar[0].userId,
+    date: "12-12-2020",
+   });
+   expect(calendarUpdated[0]).toBeTruthy();
+  });
+  test("fails with invalid data", async () => {
+   await api.post("/calendar/update").send({ invalidData: "" }).expect(400);
   });
  });
 });
