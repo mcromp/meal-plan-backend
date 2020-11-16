@@ -21,3 +21,7 @@ For the front-end's repo:
 - Express
 - Jest
 - Supertest
+
+## Motivation
+
+This a pet project of Matthew Crompton to cultivate a better understanding of the MERN stack (Mongoose, Express, React, Node) by creating a unique web application.
