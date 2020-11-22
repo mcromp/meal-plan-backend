@@ -1,9 +1,9 @@
-[Click here to see the deployed web app](https://mcromp.github.io/meal-plan/).
+[Click here to see the deployed web app](https://mcromp.github.io/menu-plan/).
 
 <b>Notice:</b>
-This is Meal Plan's **back-end** repo:
+This is Menu Plan's **back-end** repo:
 For the front-end's repo:
-[Click here!](https://github.com/mcromp/meal-plan)
+[Click here!](https://github.com/mcromp/menu-plan)
 
 ## Tech used
 
